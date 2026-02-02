@@ -1,0 +1,67 @@
+# Gumbel AlphaZero Training Configuration
+
+# Training phases
+phases:
+  # Phase 1: Supervised pre-training
+  supervised:
+    enabled: true
+    epochs: 50
+    save_period: 5
+
+  # Phase 2: Gumbel improvement
+  gumbel:
+    enabled: false  # Set to true after supervised pre-training
+    iterations: 1000
+
+# Data configuration
+data:
+  train_data: data/processed/train.h5
+  val_data: data/processed/val.h5
+  batch_size: 128
+  num_workers: 4
+  pin_memory: true
+  shuffle: true
+
+# Training hyperparameters
+training:
+  # Learning rate
+  learning_rate: 0.001
+  lr_schedule: cosine  # constant, cosine, step, exponential
+  lr_decay_epochs: 10
+  lr_decay_rate: 0.5
+  min_lr: 1e-6
+
+  # Optimizer
+  optimizer: adam
+  weight_decay: 1e-4
+  momentum: 0.9
+  beta1: 0.9
+  beta2: 0.999
+
+  # Loss weights
+  policy_weight: 1.0
+  value_weight: 1.0
+
+  # Training settings
+  gradient_clip_value: 1.0
+  accumulate_grad_batches: 1
+  early_stopping_patience: 10
+
+# Validation
+validation:
+  enabled: true
+  frequency: 1  # Validate every N epochs
+  batch_size: 256
+
+# Checkpointing
+checkpointing:
+  save_dir: models/checkpoints/
+  save_best: true
+  save_last: true
+  keep_top_k: 3
+
+# Logging
+logging:
+  log_dir: logs/training/
+  tensorboard: true
+  log_frequency: 100  # Log every N batches

@@ -1,0 +1,39 @@
+# Gumbel AlphaZero Network Configuration
+
+# Network architecture
+network:
+  # Type: small, standard, large
+  type: standard
+
+  # Input dimensions
+  in_channels: 14      # 7 Red + 7 Black pieces
+  board_height: 10     # Board rows
+  board_width: 9       # Board columns
+
+  # Backbone configuration
+  hidden_channels: 256      # Number of filters in residual blocks
+  num_residual_blocks: 15  # Number of residual blocks
+
+  # Action space
+  action_space_size: 2086   # Total number of possible moves
+
+  # Head types
+  policy_head_type: standard   # standard, large, attention
+  value_head_type: standard    # standard, large, pooling, dropout
+  residual_block_type: standard # standard, bottleneck, preactivation
+
+# Model variants
+models:
+  small:
+    hidden_channels: 128
+    num_residual_blocks: 10
+
+  standard:
+    hidden_channels: 256
+    num_residual_blocks: 15
+
+  large:
+    hidden_channels: 512
+    num_residual_blocks: 20
+    policy_head_type: large
+    value_head_type: large

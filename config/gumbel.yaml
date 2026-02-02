@@ -1,0 +1,41 @@
+# Gumbel Search Configuration
+
+# Search parameters
+search:
+  # Number of simulations per search
+  num_simulations: 800
+
+  # Sequential halving
+  num_levels: 4
+  max_actions: 64
+  min_actions: 1
+
+  # Simulation depth
+  max_depth: 8
+
+# Gumbel sampling
+gumbel:
+  # Temperature for sampling
+  temperature: 1.0
+
+  # Scale for Gumbel noise
+  c_scale: 1.0
+
+  # Exploration constants
+  c_visit: 1.5
+
+# Root exploration
+root_exploration:
+  # Dirichlet noise parameters
+  dirichlet_alpha: 0.3
+  dirichlet_epsilon: 0.25
+
+# Performance
+performance:
+  # Batch simulations for efficiency
+  batch_simulations: true
+  batch_size: 32
+
+  # Cache evaluations
+  use_cache: true
+  cache_size: 100000
