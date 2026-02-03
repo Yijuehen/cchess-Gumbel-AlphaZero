@@ -22,6 +22,14 @@ data:
   pin_memory: true
   shuffle: true
 
+# Data augmentation
+augmentation:
+  enabled: true
+  vertical_flip_prob: 0.5
+  horizontal_flip_prob: 0.0  # Not recommended for Chinese Chess
+  rotate_180_prob: 0.0      # Alternative to vertical flip
+  color_swap_prob: 0.0        # Can be combined with flips
+
 # Training hyperparameters
 training:
   # Learning rate
