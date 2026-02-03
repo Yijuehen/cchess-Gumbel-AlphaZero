@@ -10,8 +10,8 @@ from typing import Tuple, Optional
 import sys
 from pathlib import Path
 
-# Add parent directory to import from board module
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "cchess-Alpha-Beta+NNUE" / "src"))
+# Add parent directory to import from board module in Alpha-Beta+NNUE project
+sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / "cchess-Alpha-Beta+NNUE" / "src"))
 
 from board.board_representation import (
     ROWS, COLS, EMPTY,
@@ -153,7 +153,7 @@ def flip_move(move: int, flip_type: str = 'vertical') -> int:
     Returns:
         Flipped move encoding
     """
-    from movegen.move_generator import decode_move, encode_move
+    from board.movegen.move_generator import decode_move, encode_move
 
     from_pos, to_pos = decode_move(move)
 
